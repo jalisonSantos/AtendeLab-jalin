@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'aula_univille';
+$dbname = 'atendelab';
 $user = 'root';
 $password = '';
 try {
