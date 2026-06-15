@@ -1,8 +1,7 @@
 <?php
 
 $host = "localhost";
-$porta = "3307";
-$banco = "aula_univille";
+$banco = "atendelab";
 $usuario = "root";
 $senha = "";
 
