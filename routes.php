@@ -4,6 +4,12 @@
 // Observação: o arquivo no projeto está no singular (UsuarioController.php).
 
 require_once __DIR__ . '/app/Controllers/AuthController.php';
+require_once __DIR__ . '/app/Controllers/UsuarioController.php';
+require_once __DIR__ . '/app/Controllers/PessoasController.php';
+require_once __DIR__ . '/app/Controllers/TiposAtendimentosController.php';
+require_once __DIR__ . '/app/Controllers/AtendimentosController.php';
+
+require_once __DIR__ . '/app/Middleware/auth.php';
 
 // Define controller e action por query string.
 // Exemplo: ?controller=usuarios&action=listar
@@ -43,6 +49,9 @@ if ($controller === 'auth') {
 
 // Este roteador é simples: só reconhece o controller "usuarios".
 if ($controller === 'usuarios') {
+
+    exigirAutenticacao();
+
     $usuariosController = new UsuariosController();
 
     // Escolhe qual método do controller executar.

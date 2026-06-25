@@ -1,4 +1,3 @@
-```php
 <?php
 
 class AtendimentosController
@@ -11,22 +10,38 @@ class AtendimentosController
         $this->pdo = $pdo;
     }
 
-    public function listar()
-    {
-        $sql = "
-        SELECT
-            a.*,
-            p.nome AS pessoa,
-            t.nome AS tipo
-        FROM atendimentos a
-        LEFT JOIN pessoas p ON p.id = a.pessoa_id
-        LEFT JOIN tipos_atendimentos t ON t.id = a.tipo_atendimento_id
-        ORDER BY a.id DESC";
+public function listar()
+{
+    header('Content-Type: application/json; charset=utf-8');
 
-        echo json_encode(
-            $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC)
-        );
-    }
+    $sql = "
+        SELECT
+            a.id,
+            p.nome AS pessoa,
+            t.nome AS tipo_atendimento,
+            a.data_atendimento,
+            a.hora_atendimento,
+            a.descricao,
+            a.observacao,
+            a.observacao_final,
+            a.status
+        FROM atendimentos a
+        INNER JOIN pessoas p
+            ON p.id = a.pessoa_id
+        INNER JOIN tipos_atendimentos t
+            ON t.id = a.tipo_atendimento
+        ORDER BY a.id DESC
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode(
+        $dados,
+        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+    );
+}
 
     public function buscarPorId()
     {
@@ -103,4 +118,3 @@ class AtendimentosController
         ]);
     }
 }
-```

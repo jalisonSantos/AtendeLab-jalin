@@ -1,4 +1,3 @@
-```php
 <?php
 
 class PessoasController
@@ -44,27 +43,28 @@ class PessoasController
         );
     }
 
-    public function criar(): void
-    {
-        $stmt = $this->pdo->prepare(
-            "INSERT INTO pessoas
-            (nome, cpf, telefone, email, status)
-            VALUES
-            (:nome, :cpf, :telefone, :email, :status)"
-        );
+ public function criar(): void
+{
+    $stmt = $this->pdo->prepare(
+        "INSERT INTO pessoas
+        (nome, documento, telefone, curso, periodo, status)
+        VALUES
+        (:nome, :documento, :telefone, :curso, :periodo, :status)"
+    );
 
-        $stmt->execute([
-            ':nome' => $_POST['nome'],
-            ':cpf' => $_POST['cpf'],
-            ':telefone' => $_POST['telefone'],
-            ':email' => $_POST['email'],
-            ':status' => $_POST['status'] ?? 'ativo'
-        ]);
+    $stmt->execute([
+        ':nome' => $_POST['nome'] ?? '',
+        ':documento' => $_POST['documento'] ?? '',
+        ':telefone' => $_POST['telefone'] ?? '',
+        ':curso' => $_POST['curso'] ?? '',
+        ':periodo' => $_POST['periodo'] ?? '',
+        ':status' => $_POST['status'] ?? 'ativo'
+    ]);
 
-        echo json_encode([
-            'mensagem' => 'Pessoa cadastrada com sucesso.'
-        ]);
-    }
+    echo json_encode([
+        'mensagem' => 'Pessoa cadastrada com sucesso.'
+    ]);
+}
 
     public function atualizar(): void
     {
@@ -107,4 +107,3 @@ class PessoasController
         ]);
     }
 }
-```

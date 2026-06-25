@@ -1,4 +1,3 @@
-```php
 <?php
 
 class TiposAtendimentosController
@@ -92,4 +91,3 @@ class TiposAtendimentosController
         ]);
     }
 }
-```
