@@ -1,4 +1,4 @@
-indow.AtendeLabApi = (() => {
+window.AtendeLabApi = (() => {
     const baseUrl = '/atendelab/public/';
     async function request(controller, action, { method = 'GET', query = {}, body = null } = {}) {
         const params = new URLSearchParams({ controller, action, ...query });
@@ -37,8 +37,7 @@ ${response.status}`);
         if (!data || typeof data !== 'object') return {};
         for (const key of ['dados', 'item', 'registro', 'pessoa', 'tipo', 'atendimento',
             'usuario']) {
-            if (data[key] && typeof data[key] === 'object' && !Array.isArray(data[key])) return
-            data[key];
+          if (data[key] && typeof data[key] === 'object' && !Array.isArray(data[key])) return data[key];
         }
         return data;
     }
