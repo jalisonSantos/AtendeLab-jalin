@@ -173,5 +173,5 @@ switch ($controller) {
         break;
 
     default:
-        responderRotaNaoEncontrada('Controller não encontrado.');
+        responderRotaNaoEncontrada('Controller não encontrado.!');
 }
